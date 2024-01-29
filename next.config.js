@@ -3,7 +3,7 @@ const nextConfig = {async rewrites() {
     return [
         {
             source: '/api/:path*',
-            destination: `http://localhost:5000/api/v1/:path*`,
+            destination: `https://bookings-app-lac.vercel.app/api/v1/:path*`,
         },
     ]
 },}
