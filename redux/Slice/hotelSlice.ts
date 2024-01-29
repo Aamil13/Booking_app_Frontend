@@ -111,7 +111,7 @@ interface HoteltypedataState{
     count: number;
 }
 
-interface GuestTypeDataState{
+interface GuestTypeDataStateHotel{
     _id: string;
     name: string;
     type: string;
@@ -125,6 +125,11 @@ interface GuestTypeDataState{
     cheapestPrice: number;
     featured: boolean;
     __v: number
+}
+
+interface GuestTypeDataState{
+    hotels:GuestTypeDataStateHotel[];
+    count:string;
 }
 
 interface searchTypeDataHotels{
@@ -158,7 +163,7 @@ interface HotelState{
     HotelTypedata:HoteltypedataState | Array<{}>;
     guestTypeLoading:boolean;
     guestTypeErr: string | null;
-    guestTypeData: GuestTypeDataState | Array<{}>
+    guestTypeData: GuestTypeDataState;
     searchTypeLoading:boolean;
     searchTypeErr: string | null;
     searchTypeData: searchTypeDataState ;
@@ -173,7 +178,7 @@ const initialState ={
     HotelTypedata:[],
     guestTypeLoading:false,
     guestTypeErr:null,
-    guestTypeData:[],
+    guestTypeData:{hotels:[],count:""},
     searchTypeLoading:true,
     searchTypeErr:null,
     searchTypeData:{hotels:[],count:""}

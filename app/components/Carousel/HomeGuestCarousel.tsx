@@ -34,7 +34,7 @@ const dummypropertydata:Array<propertytype>=[
 type Props = {}
 
 const HomeGuestCarousel = (props: Props) => {
-  const homeGuestdata:any = useAppSelector((state)=> state?.hotel.guestTypeData)
+  const homeGuestdata:any = useAppSelector((state)=> state?.hotel.guestTypeData.hotels)
   const err:any  =useAppSelector((state)=>state?.hotel.guestTypeErr)
  
   const dispatch = useAppDispatch()
