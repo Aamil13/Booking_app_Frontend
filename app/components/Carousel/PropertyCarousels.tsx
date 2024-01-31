@@ -32,30 +32,38 @@ const dummypropertydata:Array<propertytype>=[
 
 const PropertyCarousels = () => {
   const dispatch = useAppDispatch()
- const [screensize,setScreenSize] = useState(0)
+
+
+
+
+ const [scrensize, setScreenSize] = useState(0)
+ 
+  useEffect(()=>{
+   
+    window.addEventListener("resize", () => {
+      setScreenSize (window.innerWidth);
+  });
+  return () => {
+      window.removeEventListener("resize", () => {
+        setScreenSize(window.innerWidth)
+      })
+  }
   
-  // console.log("screen",screensize);
+}, [scrensize]);
+  
+  // console.log("screen",scrensize);
   
   
 
   useEffect(()=>{
     dispatch(getHotelType())
-
-    const ScreenWidth=()=>{
-      setScreenSize(window.innerWidth)
-    }
-
-    window.addEventListener('resize', ScreenWidth);
-  
-    return () => {
-     window.removeEventListener('resize', ScreenWidth);
-    };
+    setScreenSize(window.innerWidth)
 
   },[])
   return (
     <div className='w-[80%] mx-auto h-96 flex flex-col justify-center relative '>
       <h2 className='text-lg font-bold px-4'>Browse by Property type</h2>
-    <Carousel leftArrow={<CarouselButtons direction={"left"} />} rightArrow={<CarouselButtons direction={"right"} />} show={ screensize < 464 ? 1 : 3.5} responsive={false} slide={1} swiping={true}>
+    <Carousel leftArrow={<CarouselButtons direction={"left"} />} rightArrow={<CarouselButtons direction={"right"} />} show={ scrensize < 440 ? 1 : 3.5}  slide={1} swiping={true}>
    
       {
         dummypropertydata?.map((item,idx)=>(

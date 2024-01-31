@@ -36,25 +36,26 @@ type Props = {}
 const HomeGuestCarousel = (props: Props) => {
   const homeGuestdata:any = useAppSelector((state)=> state?.hotel.guestTypeData.hotels)
   const err:any  =useAppSelector((state)=>state?.hotel.guestTypeErr)
-  const [screensize,setScreenSize] = useState(0)
+  const [scrensize, setScreenSize] = useState(0)
   const dispatch = useAppDispatch()
 
 
+  useEffect(()=>{
+   
+    window.addEventListener("resize", () => {
+      setScreenSize (window.innerWidth);
+  });
+  return () => {
+      window.removeEventListener("resize", () => {
+        setScreenSize(window.innerWidth)
+      })
+  }
+  
+}, [scrensize]);
   
   useEffect(()=>{
       dispatch(HomeGuest())
-
-      const ScreenWidth=()=>{
-        setScreenSize(window.innerWidth)
-      }
-  
-      window.addEventListener('resize', ScreenWidth);
-    
-      return () => {
-       window.removeEventListener('resize', ScreenWidth);
-      };
-
-
+      setScreenSize(window.innerWidth)
   },[])
   
   return (
@@ -63,7 +64,7 @@ const HomeGuestCarousel = (props: Props) => {
      
     {
       homeGuestdata.length ?
-      <Carousel leftArrow={<CarouselButtons direction={"left"} />} rightArrow={<CarouselButtons direction={"right"} />} show={screensize < 464 ? 1 : 3.5} slide={1} swiping={true}>
+      <Carousel leftArrow={<CarouselButtons direction={"left"} />} rightArrow={<CarouselButtons direction={"right"} />} show={ scrensize < 440 ? 1 : 3.5} slide={1} swiping={true}>
    
       {
         
