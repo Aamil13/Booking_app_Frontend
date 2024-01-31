@@ -19,7 +19,7 @@ const PropertyCards = ({imglink,id}: datatype) => {
   
   return (
     <div className='flex flex-col p-4'>
-        <img className='h-60 w-70  rounded-lg object-cover' src={imglink} alt="propertyimg" />
+        <img className='h-60 w-full  rounded-lg object-cover' src={imglink} alt="propertyimg" />
         {
           hoteltype?.[id] ?
           <>

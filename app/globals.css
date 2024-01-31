@@ -11,3 +11,9 @@
 body{
   background: #F6F8F9;
 }
+
+@media screen and (max-width: 400px) {
+  body{
+    overflow-x: hidden;
+  }
+}

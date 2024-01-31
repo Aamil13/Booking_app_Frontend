@@ -22,7 +22,7 @@ const HomeGuestCard = ({img,name,location,city,price,rating,id}: datatype) => {
     }
   return (
    
-    <div onClick={()=>handleClick()} className=' flex flex-col justify-between  bg-white rounded-lg shadow-md mx-2 h-[410px] max-sm:w-[84%] '>
+    <div onClick={()=>handleClick()} className=' flex flex-col justify-between  bg-white rounded-lg shadow-md mx-2 h-[410px]  '>
     <img className='h-60 w-70  rounded-lg rounded-b-none object-cover' src={img} alt="propertyimg" />
     <section className='flex flex-col gap-1 px-5'>
     <p className='text-sm font-bold'>{name}</p>

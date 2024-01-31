@@ -17,7 +17,7 @@ const Dropdown = (props: Props) => {
     const dispatch = useAppDispatch()
     const router = useRouter()
   return (
-    <motion.div  className='max-sm:block hidden relative z-10 '>
+    <motion.div  className='max-sm:block hidden relative z-20 '>
             <div onClick={()=>setShow(!show)}>
             <CgProfile  size={24} />
             </div>
@@ -39,7 +39,7 @@ const Dropdown = (props: Props) => {
                           :
                           <>
                           <p onClick={()=>router.push("/login")} className='bg-inherit cursor-pointer hover:text-green-300 transition-all duration-150'>Login</p>
-                    <p onClick={()=>router.push("/register")} className='bg-inherit cursor-pointer hover:text-green-300 transition-all duration-150'>Register</p>
+                    <p onClick={()=>router.push("/register")} className=' bg-inherit cursor-pointer hover:text-green-300 transition-all duration-150'>Register</p>
                           </>
                         }
                     

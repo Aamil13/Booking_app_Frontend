@@ -57,7 +57,7 @@ const HeroFilter = (props: Props) => {
       }
 
   return (
-    <div className='z-10 absolute bottom-[-70px] max-md:bottom-[-120px] h-32 max-md:h-56 max-sm:bottom-[-150px] bg-white shadow-2xl w-2/3 max-sm:w-4/5 rounded-xl border-2 border-blue-300 p-4'>
+    <div className='z-10 absolute bottom-[-70px] max-md:bottom-[-120px] h-32 max-md:h-56 max-sm:h-72 max-sm:bottom-[-150px] bg-white shadow-2xl w-2/3 max-sm:w-4/5 rounded-xl border-2 border-blue-300 p-4'>
         
         <div className='h-full flex max-md:flex-col  justify-between max-md:items-center  bg-white '>
             <section className='bg-white flex gap-2   items-center h-full p-2'>

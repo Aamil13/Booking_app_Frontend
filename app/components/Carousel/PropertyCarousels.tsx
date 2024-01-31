@@ -1,6 +1,6 @@
 "use client"
 
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { Carousel } from '@trendyol-js/react-carousel';
 import CarouselButtons from '../buttons/CarouselButtons';
 import PropertyCards from '../cards/PropertyCards';
@@ -32,18 +32,30 @@ const dummypropertydata:Array<propertytype>=[
 
 const PropertyCarousels = () => {
   const dispatch = useAppDispatch()
- 
+ const [screensize,setScreenSize] = useState(0)
   
-
+  // console.log("screen",screensize);
+  
   
 
   useEffect(()=>{
     dispatch(getHotelType())
+
+    const ScreenWidth=()=>{
+      setScreenSize(window.innerWidth)
+    }
+
+    window.addEventListener('resize', ScreenWidth);
+  
+    return () => {
+     window.removeEventListener('resize', ScreenWidth);
+    };
+
   },[])
   return (
-    <div className='w-10/12 mx-auto h-96 flex flex-col justify-center relative '>
+    <div className='w-[80%] mx-auto h-96 flex flex-col justify-center relative '>
       <h2 className='text-lg font-bold px-4'>Browse by Property type</h2>
-    <Carousel leftArrow={<CarouselButtons direction={"left"} />} rightArrow={<CarouselButtons direction={"right"} />} show={3.5} slide={1} swiping={true}>
+    <Carousel leftArrow={<CarouselButtons direction={"left"} />} rightArrow={<CarouselButtons direction={"right"} />} show={ screensize < 464 ? 1 : 3.5} responsive={false} slide={1} swiping={true}>
    
       {
         dummypropertydata?.map((item,idx)=>(
