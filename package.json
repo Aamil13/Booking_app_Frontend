@@ -16,6 +16,7 @@
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.5",
     "next": "14.0.2",
+    "nextjs-toploader": "^1.6.12",
     "react": "^18",
     "react-date-range": "^1.4.0",
     "react-dom": "^18",

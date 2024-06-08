@@ -1,5 +1,7 @@
 import { useAppSelector } from '@/redux/Slice/useTypedSelector';
+import { useRouter } from 'next/navigation';
 import React from 'react'
+import toast from 'react-hot-toast';
 import { SyncLoader } from 'react-spinners';
 
 
@@ -14,11 +16,19 @@ type datatype={
 const PropertyCards = ({imglink,id}: datatype) => {
   const hoteltype:any = useAppSelector((state)=>state?.hotel?.HotelTypedata)
   const err = useAppSelector((state)=>state.hotel.HotelTypeerror)
-  // console.log("aaa",hoteltype);
+  // console.log("aaa",hoteltype[id].type);
+  const router = useRouter()
 
+  const handleClick=()=>{
+    if(hoteltype.count < 1){
+     return toast.error("Currently No Property available!")
+    }
+
+    router.push(`/searchresult/?type=${hoteltype[id].type}&startdate=${new Date()}&enddate=${new Date(Date.now() + (60 * 60 * 24 * 1000))}`)
+  }
   
   return (
-    <div className='flex flex-col p-4'>
+    <div onClick={()=>handleClick()} className='flex flex-col p-4'>
         <img className='h-60 w-full  rounded-lg object-cover' src={imglink} alt="propertyimg" />
         {
           hoteltype?.[id] ?

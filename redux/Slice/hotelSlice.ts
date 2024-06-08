@@ -42,13 +42,14 @@ export const HomeGuest = createAsyncThunk(
 )
 
 type searchquery={
-    destination:string | null;
+    destination?:string | null;
     adult?:string | null; 
     children?:string | null; 
     room?:string | null; 
     minprice?:string | null; 
     maxprice?:string | null; 
-    page:number
+    page:number;
+    type?: string | null;
 }
 
 export const searchResult = createAsyncThunk(
@@ -58,6 +59,20 @@ export const searchResult = createAsyncThunk(
             // console.log("datasearch",data.destination);
             
             const res = await axios.get(`/api/hotel/getallhotels?city=${data.destination?.toLowerCase()}&min=${data.minprice ? data.minprice : ""}&max=${data.maxprice ? data.maxprice : ""}&page=${data.page ?data.page : 1}&limit=5 `)
+            return res.data
+        } catch (error) {
+            return rejectWithValue(error)
+        }
+    }
+)
+
+export const searchTypeResult = createAsyncThunk(
+    "SearchTypeResults",
+    async(data:searchquery,{rejectWithValue})=>{
+        try {
+            // console.log("datasearch",data.destination);
+            
+            const res = await axios.get(`/api/hotel/getallhotels?type=${data.type}&min=${data.minprice ? data.minprice : ""}&max=${data.maxprice ? data.maxprice : ""}&page=${data.page ?data.page : 1}&limit=5 `)
             return res.data
         } catch (error) {
             return rejectWithValue(error)
@@ -235,6 +250,18 @@ const HotelSlice = createSlice({
             state.searchTypeData = action.payload
         }),
         builder.addCase(searchResult.rejected,(state,action:PayloadAction<any>)=>{
+            state.searchTypeLoading = false
+            state.searchTypeErr = action.payload
+        })
+        builder.addCase(searchTypeResult.pending,(state)=>{
+            state.searchTypeLoading = true
+            state.searchTypeData = {hotels:[],count:""}
+        }),
+        builder.addCase(searchTypeResult.fulfilled,(state,action:PayloadAction<any>)=>{
+            state.searchTypeLoading = false
+            state.searchTypeData = action.payload
+        }),
+        builder.addCase(searchTypeResult.rejected,(state,action:PayloadAction<any>)=>{
             state.searchTypeLoading = false
             state.searchTypeErr = action.payload
         })

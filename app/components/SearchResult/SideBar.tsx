@@ -8,12 +8,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useAppDispatch } from '@/redux/Slice/useTypedSelector';
-import { searchResult } from '@/redux/Slice/hotelSlice';
+import { searchResult, searchTypeResult } from '@/redux/Slice/hotelSlice';
 
 
-type Props = {}
 
-const SideBar = (props: Props) => {
+
+const SideBar = () => {
   const searchParams = useSearchParams()
   const router = useRouter()
   const dispatch = useAppDispatch()
@@ -24,6 +24,7 @@ const SideBar = (props: Props) => {
   const adult = searchParams.get("adult")
   const children = searchParams.get("children")
   const room = searchParams.get("room")
+  const type = searchParams.get("type")
   // console.log(startdate);
   const [sidebarDatebool,setSidebarDateBool] = useState(false)
   const [sidebardate, setSidebarDate] = useState([
@@ -43,8 +44,17 @@ const SideBar = (props: Props) => {
   const [page,setPage] = useState(1)
 
   useEffect(()=>{
-    dispatch(searchResult({destination,adult,page}))
+    if(type != null){
+      dispatch(searchTypeResult({type,adult,page}))
+      
+    }else{
+      dispatch(searchResult({destination,adult,page}))
+
+    }
+    
   },[])
+
+ 
 
   const handleSearch =async()=>{
    await router.push(`/searchresult/?destination=${destinationoption?.toLowerCase()}&startdate=${sidebardate[0].startDate}&enddate=${sidebardate[0].endDate}&adult=${adultoption}&children=${children}&room=${roomoption}&page=${page}&minPrice=${minprice}&maxPrice=${maxprice}`)
