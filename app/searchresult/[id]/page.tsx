@@ -173,7 +173,7 @@ const page = (props: Props) => {
               {/* ///rESERVE Modal  */}
               {
                 showReserve && 
-                <ReserveModal hotelid={param.id.toString()} setShowReserve={setShowReserve} StartDate={startdate} EndDate={enddate} />
+                <ReserveModal hotelid={param.id.toString()} setShowReserve={setShowReserve} StartDate={startdate} EndDate={enddate} totalPrice={Number(data?.cheapestPrice)} />
               }
     </div>
     }

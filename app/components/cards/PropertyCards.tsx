@@ -24,7 +24,7 @@ const PropertyCards = ({imglink,id}: datatype) => {
      return toast.error("Currently No Property available!")
     }
 
-    router.push(`/searchresult/?type=${hoteltype[id].type}&startdate=${new Date()}&enddate=${new Date(Date.now() + (60 * 60 * 24 * 1000))}`)
+    router.push(`/searchresult/?type=${hoteltype[id].type}&startdate=${new Date()}&enddate=${new Date(Date.now() + (60 * 60 * 24 * 1000))}&page=1`)
   }
   
   return (

@@ -24,7 +24,7 @@ const HeroCards = ({img,cityName,properties,id,loading,err}:Props) => {
      return toast.error("Currently No Property available!")
     }
 
-    router.push(`/searchresult/?destination=${ cityName.toLowerCase()}&startdate=${new Date()}&enddate=${new Date(Date.now() + (60 * 60 * 24 * 1000))}&adult=1&children=0&room=1`)
+    router.push(`/searchresult/?destination=${ cityName.toLowerCase()}&startdate=${new Date()}&enddate=${new Date(Date.now() + (60 * 60 * 24 * 1000))}&adult=1&children=0&room=1&page=1`)
   }
   
   return (

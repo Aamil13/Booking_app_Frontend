@@ -18,7 +18,7 @@ const HomeGuestCard = ({img,name,location,city,price,rating,id}: datatype) => {
   const router = useRouter()
 
     const handleClick=()=>{
-      router.push(`/searchresult/${id}?startdate=${new Date()}&enddate=${new Date(Date.now() + (60 * 60 * 24 * 1000))}&room=1`)
+      router.push(`/searchresult/${id}?startdate=${new Date()}&enddate=${new Date(Date.now() + (60 * 60 * 24 * 1000))}&room=1&page=1`)
     }
   return (
    

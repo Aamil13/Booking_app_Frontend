@@ -13,6 +13,7 @@ type Props = {
     setShowReserve:React.Dispatch<React.SetStateAction<boolean>>
     StartDate:string | null;
     EndDate:string | null;
+    totalPrice:Number
 }
 
 type roomnumberstate={
@@ -30,7 +31,7 @@ type roomState={
     roomNumbers:Array<roomnumberstate>
 }
 
-const ReserveModal = ({hotelid,setShowReserve,StartDate,EndDate}: Props) => {
+const ReserveModal = ({hotelid,setShowReserve,StartDate,EndDate,totalPrice}: Props) => {
 
     const dispatch = useAppDispatch()
     const [roomData, setRoomData] = useState<roomState[]>([])
@@ -38,7 +39,7 @@ const ReserveModal = ({hotelid,setShowReserve,StartDate,EndDate}: Props) => {
     const [ReserveLoading, setReserveLoading] = useState(false)
     const [selectedRooms, setSelectedRooms] = useState<Array<string>>([])
     const user = useAppSelector((state)=>state.auth.AuthUser)
-    console.log("room",roomData);
+
     
     useEffect(()=>{
      const hotelcall =async()=>{
@@ -136,10 +137,10 @@ const ReserveModal = ({hotelid,setShowReserve,StartDate,EndDate}: Props) => {
             hotelid,
             user: user?._id,
             name: user?.username,
+            totalPrice:totalPrice,
             roomno: roomId.split("/")[1]
           });
       
-          console.log("res", res);
           if(res.status == 200){
             toast.success(`${roomId.split("/")[1]} Booked` )
           }
