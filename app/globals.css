@@ -2,18 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
 }
-body{
-  background: #F6F8F9;
+body {
+  background: #f6f8f9;
 }
 
 @media screen and (max-width: 400px) {
-  body{
+  body {
     overflow-x: hidden;
   }
 }
