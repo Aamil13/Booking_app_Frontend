@@ -5,6 +5,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { SyncLoader } from "react-spinners";
+import { getCookie } from "../hooks/useCookie";
 
 type Props = {};
 
@@ -13,7 +14,9 @@ const page = (props: Props) => {
   const [totalcount, setTotalCount] = useState(1);
   const [loading, setLoading] = useState(true);
   const id = useAppSelector((state) => state.auth.AuthUser?._id);
+  const cookie = getCookie("access_token")
 
+  
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(); // You can customize the formatting as needed
@@ -22,7 +25,11 @@ const page = (props: Props) => {
   const bookingscall = async (e: Number) => {
     try {
       setLoading(true);
-      const res = await axios.get(`/api/user/usertransaction/${id}?page=${e}`);
+      const res = await axios.get(`/api/user/usertransaction/${id}?page=${e}`,  {
+        headers: {
+          Authorization: `Bearer ${cookie}`
+        }
+      });
       // console.log(res.data);
       setTotalCount(res.data.totalCount);
       setLoading(false);

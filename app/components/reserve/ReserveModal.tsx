@@ -1,4 +1,5 @@
 "use client";
+import { getCookie } from "@/app/hooks/useCookie";
 import { getHotelRoom } from "@/redux/Slice/hotelSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/Slice/useTypedSelector";
 import axios from "axios";
@@ -48,6 +49,7 @@ const ReserveModal = ({
   const [ReserveLoading, setReserveLoading] = useState(false);
   const [selectedRooms, setSelectedRooms] = useState<Array<string>>([]);
   const user = useAppSelector((state) => state.auth.AuthUser);
+  const cookie = getCookie("access_token")
 
   useEffect(() => {
     const hotelcall = async () => {
@@ -142,7 +144,11 @@ const ReserveModal = ({
               name: user?.username,
               totalPrice: totalPrice,
               roomno: roomId.split("/")[1],
-            },
+            },{
+              headers: {
+                Authorization: `Bearer ${cookie}`
+              }
+            }
           );
 
           if (res.status == 200) {

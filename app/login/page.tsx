@@ -31,7 +31,7 @@ const page = (props: Props) => {
     }
 
     const req = await dispatch(login(credentials));
-    console.log("user", req);
+    // console.log("user", req);
     if (req.type === "LoginUser/fulfilled") {
       router.push("/");
     }
